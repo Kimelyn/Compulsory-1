@@ -7,7 +7,7 @@ int n = 0;
 //Display of a tic tac toe board
 int board()
 {
-	system("cls");
+	system("cls"); //update the board everytime there is a change of input
 
 	std::cout << "Welcome to Tic Tac Toe game!\n";
 	std::cout << "Player 1 (x) & Player 2 (O)\n";
@@ -56,29 +56,29 @@ void input() {
 		table[8] = player;
 }
 //determine the winner and returns to main
-char Win()
+char gameWin()
 {
-	//player x wins if
+	//player x wins if horisontal
 	if (table[0] == 'X' && table[1] == 'X' && table[2] == 'X')
 		return 'X';
 	if (table[3] == 'X' && table[4] == 'X' && table[5] == 'X')
 		return 'X';
 	if (table[6] == 'X' && table[7] == 'X' && table[8] == 'X')
 		return 'X';
-
+	//vertical
 	if (table[0] == 'X' && table[3] == 'X' && table[6] == 'X')
 		return 'X';
 	if (table[1] == 'X' && table[4] == 'X' && table[7] == 'X')
 		return 'X';
 	if (table[2] == 'X' && table[5] == 'X' && table[8] == 'X')
 		return 'X';
-
+	//cross
 	if (table[0] == 'X' && table[4] == 'X' && table[8] == 'X')
 		return 'X';
 	if (table[6] == 'X' && table[4] == 'X' && table[2] == 'X')
 		return 'X';
 
-	//player O wins if
+	//player O wins if same as above
 	if (table[0] == 'O' && table[1] == 'O' && table[2] == 'O')
 		return 'O';
 	if (table[3] == 'O' && table[4] == 'O' && table[5] == 'O')
@@ -105,20 +105,20 @@ int main()
 {
 	n = 0;
 	while (2) {
-		n++;
+		n++; // going through the table
 		playerTurn();
-		board();
-		if (Win() == 'X')
+		board(); //Game is over when one of the options above from function gameWin is chosen
+		if (gameWin() == 'X')
 		{
 			std::cout << "Congrats, X is the winner!\n";
 			break;
 		}
-		else if (Win() == 'O')
+		else if (gameWin() == 'O')
 		{
 			std::cout << "Congrats, O is the winner\n";
 			break;
 		}
-		else if (Win() == '/' && n == 9)
+		else if (gameWin() == '/' && n == 9)
 		{
 			std::cout << "It's a draw!\n";
 			break;
